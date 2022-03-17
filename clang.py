@@ -10,8 +10,7 @@ code = """
 #include <iostream>
 #endif
 
-class ThisIsVeryBadStyleIHopeNobodyWantsThisName {
-public:
+struct ThisIsVeryBadStyleIHopeNobodyWantsThisName {
       ThisIsVeryBadStyleIHopeNobodyWantsThisName() {
            std::cout << "Build with Clang, " << __DATE__ << " " << __TIME__ << std::endl;
       }    

@@ -20,12 +20,11 @@ def main():
     bootstrap = True
     if bootstrap:
         args.append("-DCLANG_ENABLE_BOOTSTRAP=On")
-    else: # not sure if this one works, so use default bootstrap move
-        current_dir_ls = subprocess.run(["ls", path[0:-6]], capture_output=True).stdout.split(b'\n')
-        if b'clang' in current_dir_ls:
-            args.append("CMAKE_C_COMPILER=./clang")
-        if b'clang++' in current_dir_ls:
-            args.append("CMAKE_CXX_COMPILER=./clang++")
+    else: # not sure if this one works, so use default bootstrap
+        if os.isfile(path + "bin/clang"):
+            args.append(f"CMAKE_C_COMPILER={path + "bin"}/clang")
+        if os.isfile(path + "bin/clang"):
+            args.append(f"CMAKE_CXX_COMPILER={path + "bin"}/clang++")
     print(args)
     subprocess.run(args)
     args2 = ["make", "stage2"]
